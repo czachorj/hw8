@@ -19,14 +19,36 @@ public class BattleshipGame {
 //		
 //	}
 	
+	void battlshipGameRunner() {
+		Ocean newOcean = new Ocean();
+		int r=0;
+		int c=0;
+		newOcean.placeAllShipsRandomly();
+		newOcean.print();
+		Scanner s = new Scanner(System.in);
+		
+		while(!newOcean.isGameOver()) {
+		System.out.println("Enter the coordinate you'd like to attack. Format should be row number then column number. Each an integer between 0 and 9:");
+		r = s.nextInt();
+		c = s.nextInt();
+
+		newOcean.shootAt(r, c);
+		System.out.println(newOcean.getShotsFired());
+		
+		}
+		
+	}
+	
 	
 	public static void main(String[] args) {
-		Ocean newOcean = new Ocean();
-		newOcean.placeAllShipsRandomly();
+		BattleshipGame newGame = new BattleshipGame();
+		newGame.battlshipGameRunner();
+		
+
 		//right now this just prints the ship placements -- need to fix print method.
 		// maybe shift what's in the print method now into a testPrint method so we can 
 		// see the placements of the ships to properly debug and make sure everything's working
-		newOcean.print();
+//		e.print();
 	
 
 	}
