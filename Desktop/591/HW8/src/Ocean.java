@@ -93,7 +93,15 @@ public class Ocean {
 	}
 	
 	public boolean isOccupied(int row, int column) {
-		return true;
+		// invalid user response
+		if (row<0 || row>9 || column<0 || column>9) {
+			return false;
+		}
+		
+		if (ships[row][column].getShipType() != "empty") {
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean shootAt(int row, int column) {
