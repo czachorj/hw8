@@ -1,8 +1,7 @@
-
+import java.util.*;
 public class BattleshipGame {
 
 	// TODO: create these methods
-	//set up the game
 	//accept "shots" from the user
 	//display the results
 	//print scores
@@ -13,8 +12,16 @@ public class BattleshipGame {
 	//The top left corner square should be 0, 0. Use different characters to indicate locations that
 	//	contain a hit, locations that contain a miss, and locations that have never been fired upon.
 
+	public static void beginGame() {
+		Ocean newOcean = new Ocean();
+		newOcean.placeAllShipsRandomly();
+		newOcean.print();
+		
+	}
+	
+	
 	public static void main(String[] args) {
-		System.out.println("testing321");
+		beginGame();
 
 	}
 

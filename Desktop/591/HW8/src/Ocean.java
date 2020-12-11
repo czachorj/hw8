@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class Ocean {
 	
@@ -20,6 +21,74 @@ public class Ocean {
 	}
 	
 	public void placeAllShipsRandomly() {
+		int a;
+		int b;
+		boolean horizontal = true;
+		Random r = new Random();
+		
+		// place one battle ship
+		while (true) {
+			a = r.nextInt(10);
+			b = r.nextInt(10);
+			Battleship bs = new Battleship();
+			
+			if (bs.okToPlaceShipAt(a, b, horizontal, this)) {
+				bs.placeShipAt(a, b, horizontal, this);
+				break;
+			} else if (bs.okToPlaceShipAt(a, b, !horizontal, this)) {
+				bs.placeShipAt(a, b, !horizontal, this);
+				break;
+			}			
+		}
+		
+		// place two cruisers
+		int cruisersPlaced = 0;
+				while (cruisersPlaced < 2) {
+					a = r.nextInt(10);
+					b = r.nextInt(10);
+					Cruiser cr = new Cruiser();
+					
+					if (cr.okToPlaceShipAt(a, b, horizontal, this)) {
+						cr.placeShipAt(a, b, horizontal, this);
+						cruisersPlaced++;
+					} else if (cr.okToPlaceShipAt(a, b, !horizontal, this)) {
+						cr.placeShipAt(a, b, !horizontal, this);
+						cruisersPlaced++;
+					}			
+				}
+				
+				// place 3 destroyers
+				int destroyersPlaced = 0;
+						while (destroyersPlaced < 3) {
+							a = r.nextInt(10);
+							b = r.nextInt(10);
+							Destroyer des = new Destroyer();
+							
+							if (des.okToPlaceShipAt(a, b, horizontal, this)) {
+								des.placeShipAt(a, b, horizontal, this);
+								destroyersPlaced++;
+							} else if (des.okToPlaceShipAt(a, b, !horizontal, this)) {
+								des.placeShipAt(a, b, !horizontal, this);
+								destroyersPlaced++;
+							}			
+						}
+						
+						// place 4 submarines
+						int subsPlaced = 0;
+								while (subsPlaced < 4) {
+									a = r.nextInt(10);
+									b = r.nextInt(10);
+									Submarine sub = new Submarine();
+									
+									if (sub.okToPlaceShipAt(a, b, horizontal, this)) {
+										sub.placeShipAt(a, b, horizontal, this);
+										subsPlaced++;
+									} else if (sub.okToPlaceShipAt(a, b, !horizontal, this)) {
+										sub.placeShipAt(a, b, !horizontal, this);
+										subsPlaced++;
+									}			
+								}
+										
 		
 	}
 	
