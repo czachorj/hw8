@@ -2,9 +2,8 @@ public class Submarine extends Ship {
 	
 	public Submarine() {
 		this.length = 1;
-		for (int a = 0; a < this.length; a++) {
-			this.hit[a] = false;
-		}
+		this.hit = new boolean[this.length];
+
 	}
 	
 	@Override

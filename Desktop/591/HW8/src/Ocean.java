@@ -8,6 +8,7 @@ public class Ocean {
 	private int shipsSunk;
 	
 	Ocean() {
+		// creates empty ocean and initializes game variables
 		shotsFired = 0;
 		hitCount = 0;
 		shipsSunk = 0;
@@ -21,12 +22,13 @@ public class Ocean {
 	}
 	
 	public void placeAllShipsRandomly() {
+		// place the ships randomly, starting with the larger ships first
 		int a;
 		int b;
 		boolean horizontal = true;
 		Random r = new Random();
 		
-		// place one battle ship
+		// place one battle ship ;; will keep looping until gets a valid placement
 		while (true) {
 			a = r.nextInt(10);
 			b = r.nextInt(10);
@@ -35,77 +37,94 @@ public class Ocean {
 			if (bs.okToPlaceShipAt(a, b, horizontal, this)) {
 				bs.placeShipAt(a, b, horizontal, this);
 				break;
+				
+			// if cant place it horizontally, try vertically, and if that doesnt work, pick new numbers
 			} else if (bs.okToPlaceShipAt(a, b, !horizontal, this)) {
 				bs.placeShipAt(a, b, !horizontal, this);
 				break;
 			}			
 		}
 		
-		// place two cruisers
+		// place 2 cruisers
 		int cruisersPlaced = 0;
-				while (cruisersPlaced < 2) {
-					a = r.nextInt(10);
-					b = r.nextInt(10);
-					Cruiser cr = new Cruiser();
-					
-					if (cr.okToPlaceShipAt(a, b, horizontal, this)) {
-						cr.placeShipAt(a, b, horizontal, this);
-						cruisersPlaced++;
-					} else if (cr.okToPlaceShipAt(a, b, !horizontal, this)) {
-						cr.placeShipAt(a, b, !horizontal, this);
-						cruisersPlaced++;
-					}			
-				}
+		while (cruisersPlaced < 2) {
+			a = r.nextInt(10);
+			b = r.nextInt(10);
+			Cruiser cr = new Cruiser();
+			
+			if (cr.okToPlaceShipAt(a, b, horizontal, this)) {
+				cr.placeShipAt(a, b, horizontal, this);
+				cruisersPlaced++;
 				
-				// place 3 destroyers
-				int destroyersPlaced = 0;
-						while (destroyersPlaced < 3) {
-							a = r.nextInt(10);
-							b = r.nextInt(10);
-							Destroyer des = new Destroyer();
-							
-							if (des.okToPlaceShipAt(a, b, horizontal, this)) {
-								des.placeShipAt(a, b, horizontal, this);
-								destroyersPlaced++;
-							} else if (des.okToPlaceShipAt(a, b, !horizontal, this)) {
-								des.placeShipAt(a, b, !horizontal, this);
-								destroyersPlaced++;
-							}			
-						}
+			// if cant place it horizontally, try vertically, and if that doesnt work, pick new numbers
+			} else if (cr.okToPlaceShipAt(a, b, !horizontal, this)) {
+				cr.placeShipAt(a, b, !horizontal, this);
+				cruisersPlaced++;
+			}			
+		}
+				
+		// place 3 destroyers
+		int destroyersPlaced = 0;
+		while (destroyersPlaced < 3) {
+			a = r.nextInt(10);
+			b = r.nextInt(10);
+			Destroyer des = new Destroyer();
+			
+			if (des.okToPlaceShipAt(a, b, horizontal, this)) {
+				des.placeShipAt(a, b, horizontal, this);
+				destroyersPlaced++;
+				
+			// if cant place it horizontally, try vertically, and if that doesnt work, pick new numbers
+			} else if (des.okToPlaceShipAt(a, b, !horizontal, this)) {
+				des.placeShipAt(a, b, !horizontal, this);
+				destroyersPlaced++;
+			}			
+		}
 						
-						// place 4 submarines
-						int subsPlaced = 0;
-								while (subsPlaced < 4) {
-									a = r.nextInt(10);
-									b = r.nextInt(10);
-									Submarine sub = new Submarine();
-									
-									if (sub.okToPlaceShipAt(a, b, horizontal, this)) {
-										sub.placeShipAt(a, b, horizontal, this);
-										subsPlaced++;
-									} else if (sub.okToPlaceShipAt(a, b, !horizontal, this)) {
-										sub.placeShipAt(a, b, !horizontal, this);
-										subsPlaced++;
-									}			
-								}
-										
-		
+		// place 4 submarines
+		int subsPlaced = 0;
+		while (subsPlaced < 4) {
+			a = r.nextInt(10);
+			b = r.nextInt(10);
+			Submarine sub = new Submarine();
+			
+			if (sub.okToPlaceShipAt(a, b, horizontal, this)) {
+				sub.placeShipAt(a, b, horizontal, this);
+				subsPlaced++;
+			
+			// if cant place it horizontally, try vertically, and if that doesnt work, pick new numbers
+			} else if (sub.okToPlaceShipAt(a, b, !horizontal, this)) {
+				sub.placeShipAt(a, b, !horizontal, this);
+				subsPlaced++;
+			}			
+		}
 	}
 	
 	public boolean isOccupied(int row, int column) {
-		// invalid user response
-		if (row<0 || row>9 || column<0 || column>9) {
+		// error checking
+		if (row < 0 || row > 9 || column < 0 || column > 9) {
 			return false;
 		}
 		
+		// return true if the location is not empty (ie contains a ship)
 		if (ships[row][column].getShipType() != "empty") {
 			return true;
 		}
+		// if no ship, return false
 		return false;
 	}
 	
 	public boolean shootAt(int row, int column) {
-		return true;
+		// return true if location contains an afloat ship
+		if (this.isOccupied(row, column)) {
+			if (ships[row][column].isSunk() == false) {
+				ships[row][column].shootAt(row, column);
+				this.shotsFired++;
+				this.hitCount++;
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public int getShotsFired() {
@@ -121,15 +140,56 @@ public class Ocean {
 	}
 	
 	public boolean isGameOver() {
-		return false;
+		// if all ships are sunk, return true. first instance of a non-sinked ship, return false
+		for (int g = 0; g<10; g++) {
+			for (int k = 0; k<10; k++) {
+				if (ships[g][k].getShipType() == "empty") {
+					continue;
+				}
+				if (ships[g][k].isSunk() == true) {
+					continue;
+				} else {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
+	
 	public Ship[][] getShipArray() {
+		// returns 10x10 array of ships
 		return this.ships;
 	}
 	
+	
+	// right now this just prints the ship placements -- need to fix print method.
+	// maybe shift what's in the print method now into a testPrint method so we can 
+	// see the placements of the ships to properly debug and make sure everything's working
 	public void print() {
 		
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (ships[i][j].getShipType() == "battleship") {
+					System.out.print("b ");
+				}
+				else if (ships[i][j].getShipType() == "cruiser"){
+					System.out.print("c ");
+				}
+				else if (ships[i][j].getShipType() == "destroyer"){
+					System.out.print("d ");
+				}
+				else if (ships[i][j].getShipType() == "submarine"){
+					System.out.print("s ");
+				}
+				else {
+					System.out.print("- ");
+				}
+			}
+			System.out.println();
+		}
+		
+
 	}
 	
 }

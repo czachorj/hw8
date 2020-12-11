@@ -21,8 +21,13 @@ public class BattleshipGame {
 	
 	
 	public static void main(String[] args) {
-//		beginGame();
-		
+		Ocean newOcean = new Ocean();
+		newOcean.placeAllShipsRandomly();
+		//right now this just prints the ship placements -- need to fix print method.
+		// maybe shift what's in the print method now into a testPrint method so we can 
+		// see the placements of the ships to properly debug and make sure everything's working
+		newOcean.print();
+	
 
 	}
 
