@@ -37,7 +37,43 @@ public abstract class Ship {
 	
 	abstract int getLength();
 	abstract String getShipType();
+
+
+
+	boolean isSunk() {
+		for (int a=0; a<this.getLength(); a++) {
+			if (!this.hit[a]) {
+				return false;
+			}
+		}
+	return true;
+}
 	
+	boolean shootAt(int row, int column) {
+		if (this.isSunk()) {
+			return false;
+		}
+		if (this.horizontal) {
+			if (this.bowColumn == column) {
+				for (int a = 0; a<this.getLength(); a++) {
+					if (this.bowRow+a == row) {
+						this.hit[a] = true;
+						return true;
+					}
+				}
+			}
+		} else {
+			if (this.bowRow == row) {
+				for (int a = 0; a<this.getLength(); a++) {
+					if (this.bowColumn+a == column) {
+						this.hit[a] = true;
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 //	boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 //		if (row>9 || column>9) {
 //			return false;
