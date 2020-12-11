@@ -38,6 +38,12 @@ public abstract class Ship {
 	abstract int getLength();
 	abstract String getShipType();
 	
-	
+//	boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+//		if (row>9 || column>9) {
+//			return false;
+//		}
+//		
+//		
+//	}
 	
 }
