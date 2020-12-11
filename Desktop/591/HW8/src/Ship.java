@@ -8,6 +8,9 @@ public abstract class Ship {
 	protected boolean[] hit = new boolean[4];
 	
 	
+	// TODO: okToPlaceShipAt and placeShipAt
+
+	
 	public Ship() {
 	}
 	
@@ -48,6 +51,8 @@ public abstract class Ship {
 		}
 	return true;
 }
+
+	
 	
 	boolean shootAt(int row, int column) {
 		if (this.isSunk()) {
@@ -74,12 +79,14 @@ public abstract class Ship {
 		}
 		return false;
 	}
-//	boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-//		if (row>9 || column>9) {
-//			return false;
-//		}
-//		
-//		
-//	}
+	
+	@Override
+	public String toString() {
+		if (this.isSunk()) {
+			return "x";
+		} else {
+			return "S";
+		}
+	}
 	
 }
