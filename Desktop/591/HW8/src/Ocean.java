@@ -124,6 +124,7 @@ public class Ocean {
 				return true;
 			}
 		}
+		++this.shotsFired;
 		return false;
 	}
 	
