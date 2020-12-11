@@ -32,7 +32,13 @@ public class BattleshipGame {
 		r = s.nextInt();
 		c = s.nextInt();
 
-		newOcean.shootAt(r, c);
+		if(newOcean.shootAt(r, c)) {
+			System.out.println("Hit!");
+		}
+		else {
+			System.out.println("Miss.");
+		}
+		
 		System.out.println(newOcean.getShotsFired());
 		
 		}
