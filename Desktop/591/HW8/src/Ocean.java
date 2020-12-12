@@ -164,10 +164,20 @@ public class Ocean {
 	}
 	
 	
+	public void print() {
+		for(int i=0; i<10; i++) {
+			for(int j=0; j<10; j++) {
+				if()
+			}
+		}
+	}
+	
+	
+	
 	// right now this just prints the ship placements -- need to fix print method.
 	// maybe shift what's in the print method now into a testPrint method so we can 
 	// see the placements of the ships to properly debug and make sure everything's working
-	public void print() {
+	public void testPrint() {
 		
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
@@ -192,5 +202,9 @@ public class Ocean {
 		
 
 	}
+	
+	
+
+	
 	
 }
