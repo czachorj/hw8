@@ -117,7 +117,10 @@ public class Ocean {
 	}
 	
 	public boolean shootAt(int row, int column) {
+		misses[row][column] = true; //mark that spot as a miss first, for printing. then if it is a hit it will be changed to an x
+		
 		// return true if location contains an afloat ship
+		
 		if (this.isOccupied(row, column)) {
 			if (ships[row][column].isSunk() == false) {
 				ships[row][column].shootAt(row, column);
@@ -171,8 +174,15 @@ public class Ocean {
 			System.out.println("    0 1 2 3 4 5 6 7 8 9 ");
 			for(int j=0; j<10; j++) {
 				
-				if()
-				System.out.println(ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
+				if(misses[i][j]) {
+					System.out.print(" -");
+				}
+				else if (ships[i][j].shootAt(i, j)) {
+				System.out.print(ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
+				}
+				else{
+					System.out.println(" .");
+				}
 			}
 		}
 	}
@@ -182,31 +192,31 @@ public class Ocean {
 	// right now this just prints the ship placements -- need to fix print method.
 	// maybe shift what's in the print method now into a testPrint method so we can 
 	// see the placements of the ships to properly debug and make sure everything's working
-	public void testPrint() {
-		
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				if (ships[i][j].getShipType() == "battleship") {
-					System.out.print("b ");
-				}
-				else if (ships[i][j].getShipType() == "cruiser"){
-					System.out.print("c ");
-				}
-				else if (ships[i][j].getShipType() == "destroyer"){
-					System.out.print("d ");
-				}
-				else if (ships[i][j].getShipType() == "submarine"){
-					System.out.print("s ");
-				}
-				else {
-					System.out.print("- ");
-				}
-			}
-			System.out.println();
-		}
-		
-
-	}
+//	public void testPrint() {
+//		
+//		for (int i = 0; i < 10; i++) {
+//			for (int j = 0; j < 10; j++) {
+//				if (ships[i][j].getShipType() == "battleship") {
+//					System.out.print("b ");
+//				}
+//				else if (ships[i][j].getShipType() == "cruiser"){
+//					System.out.print("c ");
+//				}
+//				else if (ships[i][j].getShipType() == "destroyer"){
+//					System.out.print("d ");
+//				}
+//				else if (ships[i][j].getShipType() == "submarine"){
+//					System.out.print("s ");
+//				}
+//				else {
+//					System.out.print("- ");
+//				}
+//			}
+//			System.out.println();
+//		}
+//		
+//
+//	}
 	
 	
 
