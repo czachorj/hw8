@@ -6,19 +6,19 @@ public class Ocean {
 	private int shotsFired;
 	private int hitCount;
 	private int shipsSunk;
-	
-	boolean [][] misses = new boolean [10][10]; //array to keep track of spots that were fired upon but had no ship
+	private int missCount;
+	boolean [][] allFired = new boolean [10][10]; //array to keep track of spots that were fired upon but had no ship
 	Ocean() {
 		// creates empty ocean and initializes game variables
 		shotsFired = 0;
 		hitCount = 0;
 		shipsSunk = 0;
-		
+		missCount =0;
 		for (int a = 0; a<10; a++) {
 			for (int b = 0; b<10; b++) {
 				EmptySea emptySea = new EmptySea();
 				ships[a][b] = emptySea;
-				misses[a][b] = false; //initiate misses as false
+				allFired[a][b] = false; //initiate all fired as false
 			}
 		}
 	}
@@ -117,20 +117,20 @@ public class Ocean {
 	}
 	
 	public boolean shootAt(int row, int column) {
-		
+		allFired[row][column] = true; //mark that spot as a miss and add it to the array to keep track
+		++this.shotsFired;
 		// return true if location contains an afloat ship
 		
 		if (this.isOccupied(row, column)) {
 			if (ships[row][column].isSunk() == false) {
 				ships[row][column].shootAt(row, column);
-				this.shotsFired++;
+
 				this.hitCount++;
 				return true;
 			}
 		}
 
-		misses[row][column] = true; //mark that spot as a miss and add it to the array to keep track
-		++this.shotsFired;
+		++this.missCount;
 		return false;
 
 	}
@@ -141,6 +141,10 @@ public class Ocean {
 	
 	public int getHitCount() {
 		return this.hitCount;
+	}
+	
+	public int getMissCount() {
+		return this.missCount;
 	}
 	
 	public int getShipsSunk() {
@@ -177,15 +181,17 @@ public class Ocean {
 		for(int i=0; i<10; i++) {
 			System.out.print(i + " | ");
 			for(int j=0; j<10; j++) {
-				if(misses[i][j] == true) {
-					System.out.print(" -");
-				}
-				else if(!this.shootAt(i, j)) {
+
+				if(!allFired[i][j]) {
 					System.out.print(" .");
 				}
-				else {
+				else if(ships[i][j].shootAt(i, j)){
 
-				System.out.print(" " + ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
+					System.out.print(" " + ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
+				}
+				
+				else {
+					System.out.print(" -");
 				}
 
 //				else{

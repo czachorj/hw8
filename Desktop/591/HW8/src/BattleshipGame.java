@@ -34,17 +34,26 @@ public class BattleshipGame {
 
 		if(newOcean.shootAt(r, c)) {                        //if shootAt is true i.e. if we hit, print hit
 			System.out.println("Hit!");
+			System.out.println("__________________");
+			System.out.println();
 			Ship [][] targetShip = newOcean.getShipArray(); //get array of ocean at current state
 			if(targetShip[r][c].isSunk()) {                 //if targetShip at the location hit is sunk, print what type of ship got sunk
 				System.out.println("You just sunk a " + targetShip[r][c].getShipType());
+				System.out.println("______________");
+				System.out.println();
 			}
 			
 		}
 		else {
 			System.out.println("Miss.");                    //if shootAt is false, that means it was a miss
+			System.out.println("_______________");
+			System.out.println();
 		}
 		
 		System.out.println("Shots Fired: " + newOcean.getShotsFired());    //print out current count of shots
+		System.out.println("Hits: " + newOcean.getHitCount()); //print out hits
+		System.out.println("Misses: " + newOcean.getMissCount()); //print out misses
+		System.out.println();
 		newOcean.print();                //print ocean as is
 		}
 		

@@ -56,7 +56,7 @@ public abstract class Ship {
 		if (this.isSunk()) {
 			return false;
 		}
-		// if part of the ship is hit and hasnt been sunk, mark that ship as hit if true
+		// if part of the ship is hit and hasn't been sunk, mark that ship as hit
 		if (this.horizontal) {
 			if (this.bowColumn == column) {
 				for (int a = 0; a<this.getLength(); a++) {
