@@ -43,7 +43,7 @@ public abstract class Ship {
 	boolean isSunk() {
 		// return true is every part of shit is hit
 		for (int a=0; a<this.getLength(); a++) {
-			if (!this.hit[a]) {
+			if (this.hit[a] == false) {
 				return false;
 			}
 		}
