@@ -7,6 +7,7 @@ public class Ocean {
 	private int hitCount;
 	private int shipsSunk;
 	
+	boolean [][] misses = new boolean [10][10]; //array to keep track of spots that were fired upon but had no ship
 	Ocean() {
 		// creates empty ocean and initializes game variables
 		shotsFired = 0;
@@ -17,6 +18,7 @@ public class Ocean {
 			for (int b = 0; b<10; b++) {
 				EmptySea emptySea = new EmptySea();
 				ships[a][b] = emptySea;
+				misses[a][b] = false; //initiate misses as false
 			}
 		}
 	}
@@ -168,6 +170,8 @@ public class Ocean {
 		for(int i=0; i<10; i++) {
 			System.out.println("    0 1 2 3 4 5 6 7 8 9 ");
 			for(int j=0; j<10; j++) {
+				
+				if()
 				System.out.println(ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
 			}
 		}
