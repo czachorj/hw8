@@ -26,9 +26,9 @@ public class EmptySea extends Ship {
 		return false;
 	}
 	
-//	@Override
-//	public String toString() {
-//		return this.getShipType();
-//	}
+	@Override
+	public String toString() {
+		return "-";
+	}
 	
 }

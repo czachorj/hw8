@@ -84,9 +84,6 @@ public abstract class Ship {
 		if (this.isSunk()) {
 			return "x";
 		} 
-		else if (this.getShipType()=="empty") {
-			return "-";
-		}
 		else {
 			return "S";
 		}
