@@ -41,9 +41,9 @@ public abstract class Ship {
 
 	
 	boolean isSunk() {
-		// return true is every part of shit is hit
-		for (int a=0; a<this.getLength(); a++) {
-			if (this.hit[a] == false) {
+		// return true if every part of ship is hit
+		for (int a=0; a< getLength(); a++) {
+			if (hit[a] == false) {
 				return false;
 			}
 		}
@@ -60,7 +60,7 @@ public abstract class Ship {
 		if (this.horizontal) {
 			if (this.bowColumn == column) {
 				for (int a = 0; a<this.getLength(); a++) {
-					if (this.bowRow+a == row) {
+					if (this.bowRow == row) {
 						this.hit[a] = true;
 						return true;
 					}
@@ -69,7 +69,7 @@ public abstract class Ship {
 		} else {
 			if (this.bowRow == row) {
 				for (int a = 0; a<this.getLength(); a++) {
-					if (this.bowColumn+a == column) {
+					if (this.bowColumn == column) {
 						this.hit[a] = true;
 						return true;
 					}
