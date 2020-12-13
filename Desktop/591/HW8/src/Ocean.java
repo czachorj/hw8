@@ -117,7 +117,6 @@ public class Ocean {
 	}
 	
 	public boolean shootAt(int row, int column) {
-		misses[row][column] = true; //mark that spot as a miss first, for printing. then if it is a hit it will be changed to an x
 		
 		// return true if location contains an afloat ship
 		
@@ -129,8 +128,11 @@ public class Ocean {
 				return true;
 			}
 		}
+
+		misses[row][column] = true; //mark that spot as a miss and add it to the array to keep track
 		++this.shotsFired;
 		return false;
+
 	}
 	
 	public int getShotsFired() {
@@ -170,22 +172,32 @@ public class Ocean {
 	
 	
 	public void print() {
+		System.out.println("     0 1 2 3 4 5 6 7 8 9 ");
+		System.out.println("    ---------------------");
 		for(int i=0; i<10; i++) {
-			System.out.println("    0 1 2 3 4 5 6 7 8 9 ");
+			System.out.print(i + " | ");
 			for(int j=0; j<10; j++) {
-				
-				if(misses[i][j]) {
+				if(misses[i][j] == true) {
 					System.out.print(" -");
 				}
-				else if (ships[i][j].shootAt(i, j)) {
-				System.out.print(ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
+				else if(!this.shootAt(i, j)) {
+					System.out.print(" .");
 				}
-				else{
-					System.out.println(" .");
+				else {
+
+				System.out.print(" " + ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
 				}
+
+//				else{
+//					System.out.print(" .");
+//				}
 			}
+			System.out.println();
 		}
 	}
+}
+
+	
 	
 	
 	
@@ -222,4 +234,4 @@ public class Ocean {
 
 	
 	
-}
+
