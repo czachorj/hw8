@@ -83,7 +83,11 @@ public abstract class Ship {
 	public String toString() {
 		if (this.isSunk()) {
 			return "x";
-		} else {
+		} 
+		else if (this.getShipType()=="empty") {
+			return "-";
+		}
+		else {
 			return "S";
 		}
 	}

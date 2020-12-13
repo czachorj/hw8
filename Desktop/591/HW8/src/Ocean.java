@@ -185,23 +185,23 @@ public class Ocean {
 				if(!allFired[i][j]) {
 					System.out.print(" .");
 				}
-				else if(ships[i][j].shootAt(i, j)){
-
-					System.out.print(" " + ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
-				}
-				
-				else {
-					System.out.print(" -");
-				}
-
-//				else{
-//					System.out.print(" .");
+//				else if(ships[i][j].shootAt(i, j)){
+//
+//					System.out.print(" " + ships[i][j].toString());   //will print x if hit and s if sunk for ships fired at
 //				}
+//				
+//				else {
+//					System.out.print(" -");
+//				}
+
+				else{
+					System.out.print(" " + ships[i][j].toString());
+				}
 			}
 			System.out.println();
 		}
 	}
-}
+
 
 	
 	
@@ -210,31 +210,32 @@ public class Ocean {
 	// right now this just prints the ship placements -- need to fix print method.
 	// maybe shift what's in the print method now into a testPrint method so we can 
 	// see the placements of the ships to properly debug and make sure everything's working
-//	public void testPrint() {
-//		
-//		for (int i = 0; i < 10; i++) {
-//			for (int j = 0; j < 10; j++) {
-//				if (ships[i][j].getShipType() == "battleship") {
-//					System.out.print("b ");
-//				}
-//				else if (ships[i][j].getShipType() == "cruiser"){
-//					System.out.print("c ");
-//				}
-//				else if (ships[i][j].getShipType() == "destroyer"){
-//					System.out.print("d ");
-//				}
-//				else if (ships[i][j].getShipType() == "submarine"){
-//					System.out.print("s ");
-//				}
-//				else {
-//					System.out.print("- ");
-//				}
-//			}
-//			System.out.println();
-//		}
-//		
-//
-//	}
+	public void testPrint() {
+		
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (ships[i][j].getShipType() == "battleship") {
+					System.out.print("b ");
+				}
+				else if (ships[i][j].getShipType() == "cruiser"){
+					System.out.print("c ");
+				}
+				else if (ships[i][j].getShipType() == "destroyer"){
+					System.out.print("d ");
+				}
+				else if (ships[i][j].getShipType() == "submarine"){
+					System.out.print("s ");
+				}
+				else {
+					System.out.print("- ");
+				}
+			}
+			System.out.println();
+		}
+		
+
+	}
+	}
 	
 	
 
