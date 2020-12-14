@@ -25,7 +25,7 @@ public class Ocean {
 	
 	public void placeAllShipsRandomly() {
 		// place the ships randomly, starting with the larger ships first
-		int a;
+		int a; 
 		int b;
 		boolean horizontal = true;
 		Random r = new Random();
