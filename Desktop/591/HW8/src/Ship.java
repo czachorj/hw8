@@ -5,7 +5,7 @@ public abstract class Ship {
 	int bowColumn;		// column with the front of the ship
 	int length;
 	boolean horizontal;
-	boolean[] hit = new boolean[4]; //telling whether the ship has been hit.
+	boolean[] hit = new boolean[4];  //telling whether the ship has been hit.
 	
 	
 	int getBowRow() {
@@ -42,11 +42,15 @@ public abstract class Ship {
 	
 	boolean isSunk() {
 		// return true if every part of ship is hit
-		for (int a=0; a< getLength(); a++) {
-			if (hit[a] == false) {
+		for (int a=0; a<getLength(); a++) {
+			if (this.hit[a] == false) {
+				
+
+
 				return false;
 			}
 		}
+	
 	return true;
 }
 

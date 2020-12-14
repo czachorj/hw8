@@ -3,7 +3,8 @@ public class Cruiser extends Ship {
 	
 	public Cruiser() {
 		this.length = 3;
-		this.hit = new boolean[this.length];
+		this.hit = new boolean[3];
+		
 
 	}
 	
