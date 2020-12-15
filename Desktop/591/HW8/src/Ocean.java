@@ -212,8 +212,11 @@ public class Ocean {
 	// maybe shift what's in the print method now into a testPrint method so we can 
 	// see the placements of the ships to properly debug and make sure everything's working
 	public void testPrint() {
+		System.out.println("     0 1 2 3 4 5 6 7 8 9 ");
+		System.out.println("    ---------------------");
 		
 		for (int i = 0; i < 10; i++) {
+			System.out.print(i + " | ");
 			for (int j = 0; j < 10; j++) {
 				if (ships[i][j].getShipType() == "battleship") {
 					System.out.print("b ");
