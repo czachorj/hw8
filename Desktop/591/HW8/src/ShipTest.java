@@ -104,19 +104,19 @@ class ShipTest {
 		assertEquals(newSub1.isSunk(),true);
 
 	}
-		/*
-		 * testing if destroyer gets sunk 
-		 *THIS DOES NOT WORK
-		 */
-		@Test
-		void testIsSunk2() {
-			newDestroyer2.placeShipAt(0, 6, true, newOcean);
-			newDestroyer2.shootAt(0, 6);
-			newDestroyer2.shootAt(0, 5);
-			
-			assertEquals(newDestroyer2.isSunk(),true);
-			
-		}
+	/*
+	 * testing if destroyer gets sunk 
+	 *THIS DOES NOT WORK
+	 */
+	@Test
+	void testIsSunk2() {
+		newDestroyer2.placeShipAt(0, 6, true, newOcean);
+		newDestroyer2.shootAt(0, 6);
+		newDestroyer2.shootAt(0, 7);
+
+		assertEquals(newDestroyer2.isSunk(),true);
+
+	}
 
 
 	/*
@@ -137,12 +137,21 @@ class ShipTest {
 	 */
 
 	@Test
-	void testShootAt() {
+	void testShootAt1() {
 		newDestroyer3.placeShipAt(6, 4, false, newOcean);
 		assertEquals(newDestroyer3.shootAt(6, 4), true);
-		assertEquals(newDestroyer3.shootAt(5, 6),false);
+
 
 	}
+	@Test
+	void testShootAt2() {
+		newDestroyer3.placeShipAt(6, 4, false, newOcean);
+		assertEquals(newDestroyer3.shootAt(0, 6),false);
+
+
+	}
+
+
 
 	@Test
 	void testToString() {
@@ -153,25 +162,25 @@ class ShipTest {
 		assertEquals(newCruiser2.toString(),"S");
 		assertEquals(newSub1.toString(),"x");
 	}
-/*
- * testing if it's okay to place a ship of length 4 starting at the end of the grid, going horizontally
- */
+	/*
+	 * testing if it's okay to place a ship of length 4 starting at the end of the grid, going horizontally
+	 */
 	@Test
 	void testOkToPlaceShipAt1() {
 		assertEquals(newBattleship.okToPlaceShipAt(9, 9, true, newOcean), false);
 
-/*
- * testing if it's okay to place a ship of length 3 that would run off the grid vertically
- */
+		/*
+		 * testing if it's okay to place a ship of length 3 that would run off the grid vertically
+		 */
 	}
 	@Test
 	void testOkToPlaceShipAt2() {
 
 		assertEquals(newCruiser1.okToPlaceShipAt(8, 7, false, newOcean), false);
 
-/*
- * testing if it's okay to place a ship of length 1 in middle of grid
- */
+		/*
+		 * testing if it's okay to place a ship of length 1 in middle of grid
+		 */
 	}
 	@Test
 	void testOkToPlaceShipAt3() {
@@ -179,7 +188,7 @@ class ShipTest {
 		assertEquals(newSub1.okToPlaceShipAt(5, 5, true, newOcean), true);
 
 	}
-	
+
 	/*
 	 * testing if it's okay to place a ship of length 1 that is diagonally adjacent to an already placed ship
 	 */
@@ -189,7 +198,7 @@ class ShipTest {
 		assertEquals(newSub2.okToPlaceShipAt(6, 6, true, newOcean), false);
 
 	}
-	
+
 	/*
 	 * testing if it's okay to place a ship where there is already a ship placed
 	 */
@@ -209,7 +218,7 @@ class ShipTest {
 		assertEquals(newSub2.okToPlaceShipAt(5, 4, true, newOcean), false);
 		assertEquals(newSub2.okToPlaceShipAt(4, 5, true, newOcean), false);
 		assertEquals(newSub2.okToPlaceShipAt(6, 5, true, newOcean), false);
-		
+
 	}
 	@Test
 	void testOkToPlaceShipAt7() {	
@@ -219,12 +228,12 @@ class ShipTest {
 		assertEquals(newSub2.okToPlaceShipAt(4, 5, true, newOcean), false);
 		assertEquals(newSub2.okToPlaceShipAt(7, 5, true, newOcean), false);
 	}
-//	@Test
-//	void testOkToPlaceShipAt8() {	
-//		newSub1.placeShipAt(5, 5, true, newOcean);
-//		assertEquals(newSub2.okToPlaceShipAt(6, 6, true, newOcean), false);
-//
-//	}
+	//	@Test
+	//	void testOkToPlaceShipAt8() {	
+	//		newSub1.placeShipAt(5, 5, true, newOcean);
+	//		assertEquals(newSub2.okToPlaceShipAt(6, 6, true, newOcean), false);
+	//
+	//	}
 
 	/*
 	 * testing emptySea methods below

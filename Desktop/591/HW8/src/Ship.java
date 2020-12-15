@@ -64,50 +64,61 @@ public abstract class Ship {
 	}
 
 
-
-	boolean shootAt(int row, int column) {
-		if (this.isSunk()) {
-			return false;
-		}
-		//	 if part of the ship is hit and hasn't been sunk, mark that ship as hit
-
-		if (this.horizontal) {
-			hit[column - this.bowColumn] = true;
-			++shipHitCount;
-			return true;
-		}
-		else {
-			hit[row-this.bowRow] = true;
-			++shipHitCount;
-			return true;
-		}
-	}
-
-
-	////////////***OLD METHOD*//////
-
-	//			if (this.bowColumn == column) {
-	//				for (int a = 0; a<this.getLength(); a++) {
-	//					if (this.bowRow + a == row) {
-	//						this.hit[a] = true;
-	//						++shipHitCount;
-	//						return true;
-	//					}
-	//				}
+/////////ALTERNATE METHOD/////////////
+	//	boolean shootAt(int row, int column) {
+	//
+	//		//	 if part of the ship is hit and hasn't been sunk, mark that ship as hit
+	//		if(!this.isSunk()) {
+	//			if (this.horizontal) {
+	//				hit[column - this.bowColumn] = true;
+	//				++shipHitCount;
+	//				return true;
 	//			}
-	//		} else {
-	//			if (this.bowRow == row) {
-	//				for (int a = 0; a<this.getLength(); a++) {
-	//					if (this.bowColumn + a == column) {
-	//						this.hit[a] = true;
-	//						++shipHitCount;
-	//						return true;
-	//					}
-	//				}
+	//			else {
+	//				hit[row-this.bowRow] = true;
+	//				++shipHitCount;
+	//				return true;
 	//			}
 	//		}
-	//		return false;
+	//		else {
+	//			return false;
+	//		}
+	//
 	//	}
+
+
+	boolean shootAt (int row, int column) {
+		if(this.isSunk() == true) {
+			return false;
+		}
+
+		if(this.horizontal) {
+			for(int a=0; a<this.getLength(); a++) {
+				if (this.bowRow == row) {
+					if (this.bowColumn + a == column) {
+						this.hit[a] = true;
+						++shipHitCount;
+						return true;
+					}
+				}
+			}
+		}
+		else {
+
+			for (int a = 0; a<this.getLength(); a++) {
+				if (this.bowColumn == column) {
+					if (this.bowRow + a == row) {
+						this.hit[a] = true;
+						++shipHitCount;
+						return true;
+					}
+				}
+			}
+		}
+		
+		System.out.println(shipHitCount);
+		return false;
+	}
 
 	@Override
 	public String toString() {
