@@ -160,6 +160,7 @@ public class Ocean {
 				}
 				if (ships[g][k].isSunk() == true) {
 					continue;
+					
 				} else {
 					return false;
 				}

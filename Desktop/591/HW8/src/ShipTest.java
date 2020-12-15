@@ -104,19 +104,19 @@ class ShipTest {
 		assertEquals(newSub1.isSunk(),true);
 
 	}
-	//	/*
-	//	 * testing if destroyer gets sunk 
-	//	 *THIS DOES NOT WORK
-	//	 */
-	//	@Test
-	//	void testIsSunk2() {
-	//		newDestroyer2.placeShipAt(0, 6, true, newOcean);
-	//		newDestroyer2.shootAt(0, 6);
-	//		newDestroyer2.shootAt(0, 5);
-	//		
-	//		assertEquals(newDestroyer2.isSunk(),true);
-	//		
-	//	}
+		/*
+		 * testing if destroyer gets sunk 
+		 *THIS DOES NOT WORK
+		 */
+		@Test
+		void testIsSunk2() {
+			newDestroyer2.placeShipAt(0, 6, true, newOcean);
+			newDestroyer2.shootAt(0, 6);
+			newDestroyer2.shootAt(0, 5);
+			
+			assertEquals(newDestroyer2.isSunk(),true);
+			
+		}
 
 
 	/*
