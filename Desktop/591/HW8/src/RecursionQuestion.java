@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 //
 public class RecursionQuestion {
 	public static void main(String[] args) {
@@ -46,5 +48,22 @@ public class RecursionQuestion {
 		if (arr.length == 1) {
 			System.out.println("{" + arr[0] + "}");
 		}
+		
+		else {
+			
+		}
+	}
+	//somehow use this helper method??//
+	public static ArrayList<ArrayList<Integer>> powerSetHelper (int[] arr){
+		ArrayList<ArrayList<Integer>> subsets = null;
+		if(arr.length == 0) {
+			subsets.add(null);
+		}
+		if(arr.length ==1) {
+			subsets.add(arr[0]);
+		}
+		
+		return null;
+		
 	}
 }
