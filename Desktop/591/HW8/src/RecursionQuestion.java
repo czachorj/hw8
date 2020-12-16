@@ -38,19 +38,13 @@ public class RecursionQuestion {
 		return (num % 10 + sumDigits(num/10));
 		
 	}
-	
-	
-}
-//	
-//	
-//	static int sumDigits(int num) {
-//		int sum;
-//		return sum;
-//	}
-//	
-//	static void powerSet(int [] arr) {
-//		return;
-//	}
-//	
-//	
 
+	static void powerSet(int [] arr) {
+		if (arr.length == 0) {
+			System.out.println("{ }");
+		}
+		if (arr.length == 1) {
+			System.out.println("{" + arr[0] + "}");
+		}
+	}
+}
