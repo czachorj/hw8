@@ -5,7 +5,7 @@ public class Ocean {
 	Ship[][] ships = new Ship[10][10];
 	private int shotsFired;
 	private int hitCount;
-	private int shipsSunk;
+	int shipsSunk;
 	private int missCount;
 	boolean [][] allFired = new boolean [10][10]; //array to keep track of spots that were fired upon but had no ship
 	
@@ -137,6 +137,7 @@ public class Ocean {
 				ships[row][column].shootAt(row, column);
 
 				this.hitCount++;
+				this.shipsSunk++;
 				return true;
 			}
 		}
@@ -164,20 +165,11 @@ public class Ocean {
 	 * this method tracks to see if the game is over.
 	 */
 	public boolean isGameOver() {
-		// if all ships are sunk, return true. first instance of a non-sinked ship, return false
-		for (int g = 0; g<10; g++) {
-			for (int k = 0; k<10; k++) {
-				if (ships[g][k].getShipType() == "empty") {
-					continue;
-				}
-				if (ships[g][k].isSunk() == true) {
-					continue;
-				} else {
-					return false;
-				}
-			}
+		if (this.shipsSunk == 10) {
+			return true;
+		} else {
+			return false;
 		}
-		return true;
 	}
 	
 	
