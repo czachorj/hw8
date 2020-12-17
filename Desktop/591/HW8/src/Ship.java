@@ -39,7 +39,9 @@ public abstract class Ship {
 	abstract String getShipType();
 
 
-
+/*
+ * this method checks if a ship is sunk 
+ */
 	boolean isSunk() {
 		// return true if every part of ship is hit
 
@@ -86,7 +88,10 @@ public abstract class Ship {
 	//
 	//	}
 
-
+/*
+ * this method takes in a row and column and returns true if the given input location contains a real afloat ship and
+ * updates the number of shots that have been fired
+ */
 	boolean shootAt (int row, int column) {
 		if(this.isSunk() == true) {
 			return false;
@@ -130,7 +135,10 @@ public abstract class Ship {
 		}
 	}
 
-
+/*
+ * returns true if it is a VALID move to put a ship of length with its bow in this location with the given orientation.
+ * will not actually place the ship.
+ */
 	public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		// check if ship is already in the position
 		if (ocean.isOccupied(row, column) ) {
@@ -259,7 +267,9 @@ public abstract class Ship {
 		return true;
 	}
 
-
+/*
+ * this method actually places the ship in the ocean given a row, column, horizontal location, and ocean.
+ */
 	public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		this.setBowColumn(column);
 		this.setBowRow(row);

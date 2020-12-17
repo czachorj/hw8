@@ -8,12 +8,14 @@ public class Ocean {
 	private int shipsSunk;
 	private int missCount;
 	boolean [][] allFired = new boolean [10][10]; //array to keep track of spots that were fired upon but had no ship
+	
 	Ocean() {
-		// creates empty ocean and initializes game variables
+		//initializes game variables
 		shotsFired = 0;
 		hitCount = 0;
 		shipsSunk = 0;
 		missCount =0;
+		//create empty ocean
 		for (int a = 0; a<10; a++) {
 			for (int b = 0; b<10; b++) {
 				EmptySea emptySea = new EmptySea();
@@ -23,6 +25,9 @@ public class Ocean {
 		}
 	}
 	
+	/*
+	 * this method will place all ships randomly.
+	 */
 	public void placeAllShipsRandomly() {
 		// place the ships randomly, starting with the larger ships first
 		int a; 
@@ -102,6 +107,9 @@ public class Ocean {
 		}
 	}
 	
+	/* 
+	 * this method returns true if the location contains a ship, false if it does not contain a ship
+	 */
 	public boolean isOccupied(int row, int column) {
 		// error checking
 		if (row < 0 || row > 9 || column < 0 || column > 9) {
@@ -116,6 +124,9 @@ public class Ocean {
 		return false;
 	}
 	
+	/*
+	 *  this method tracks shots and if the fired position contains a non-sunken ship
+	 */
 	public boolean shootAt(int row, int column) {
 		allFired[row][column] = true; //mark that spot as a miss and add it to the array to keep track
 		++this.shotsFired;
@@ -129,10 +140,8 @@ public class Ocean {
 				return true;
 			}
 		}
-
 		++this.missCount;
 		return false;
-
 	}
 	
 	public int getShotsFired() {
@@ -151,6 +160,9 @@ public class Ocean {
 		return this.shipsSunk;
 	}
 	
+	/*
+	 * this method tracks to see if the game is over.
+	 */
 	public boolean isGameOver() {
 		// if all ships are sunk, return true. first instance of a non-sinked ship, return false
 		for (int g = 0; g<10; g++) {
@@ -160,7 +172,6 @@ public class Ocean {
 				}
 				if (ships[g][k].isSunk() == true) {
 					continue;
-					
 				} else {
 					return false;
 				}
@@ -175,7 +186,9 @@ public class Ocean {
 		return this.ships;
 	}
 	
-	
+	/*
+	 * this method prints the board
+	 */
 	public void print() {
 		System.out.println("     0 1 2 3 4 5 6 7 8 9 ");
 		System.out.println("    ---------------------");
